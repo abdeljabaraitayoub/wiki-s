@@ -541,7 +541,7 @@
                 </tbody>
               </table>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary">
+              <button type="button" onclick="clicked()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
                 create
               </button>
 
@@ -558,7 +558,7 @@
                         <div class="row">
                           <div class="">
                             <label for="name" class="form-label">Name</label>
-                            <input class="form-control form-control-lg" value="HHHH" id="name" type="text" placeholder="title">
+                            <input class="form-control form-control-lg" id="titlee" type="text" placeholder="title">
                           </div>
                         </div>
                       </div>
@@ -567,6 +567,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       <button type="button" id="submit" class="btn btn-primary">Save changes</button>
+                      <button type="button" id="create" class="btn btn-primary">create</button>
                     </div>
                   </div>
                 </div>

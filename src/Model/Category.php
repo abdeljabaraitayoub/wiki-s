@@ -23,6 +23,15 @@ class Category
         // dump($stmt->fetchAll());
         return $stmt->fetchAll();
     }
+    public function loadsinglecategory($id)
+    {
+        $query = "SELECT * FROM categories where id = $id";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        // dump($stmt->fetchAll());
+        return $stmt->fetchAll();
+    }
     public function create($title)
     {
         $query = "INSERT INTO categories (title) VALUES ('$title')";

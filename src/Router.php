@@ -30,6 +30,10 @@ class Router
     {
         $this->addRoute($route, $controller, $action, "DELETE");
     }
+    public function patch($route, $controller, $action)
+    {
+        $this->addRoute($route, $controller, $action, "PATCH");
+    }
 
     public function dispatch()
     {

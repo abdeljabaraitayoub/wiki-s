@@ -16,6 +16,7 @@ $router->get('/about', HomeController::class, 'about');
 $router->get('/createWiki', HomeController::class, 'createWiki');
 $router->get('/wikis', HomeController::class, 'wikis');
 $router->get('/tags', HomeController::class, 'tags');
+$router->get('/categories', HomeController::class, 'categories');
 
 //APIs routes:
 
@@ -27,16 +28,20 @@ $router->get('/api/wikis/authorload', WikiApi::class, 'authorload');
 $router->post('/api/wikis', WikiApi::class, 'create');
 $router->delete('/api/wikis', WikiApi::class, 'delete');
 $router->put('/api/wikis', WikiApi::class, 'update');
+$router->patch('/api/wikis/archive', WikiApi::class, 'archive');
 //catagory APIs
 $router->get('/api/categorie', CategoryApi::class, 'read');
-$router->post('/api/categorie/create', CategoryApi::class, 'create');
-$router->post('/api/categorie/delete', CategoryApi::class, 'delete');
-$router->post('/api/categorie/update', CategoryApi::class, 'update');
-//catagory APIs
+$router->get('/api/categorie/loadsinglecategory', CategoryApi::class, 'singlecategory');
+$router->post('/api/categorie', CategoryApi::class, 'create');
+$router->delete('/api/categorie', CategoryApi::class, 'delete');
+$router->put('/api/categorie', CategoryApi::class, 'update');
+//tags APIs
 $router->get('/api/tag/load', TagApi::class, 'tagperwiki');
 $router->get('/api/tag/loadsignletag', TagApi::class, 'singletag');
 $router->get('/api/tag/', TagApi::class, 'loadtags');
 $router->delete('/api/tag/', TagApi::class, 'delete');
+$router->post('/api/tag/', TagApi::class, 'add');
+$router->put('/api/tag/', TagApi::class, 'update');
 //wikitag APIs
 $router->post('/api/Wikitag/', WikiTagApi::class, 'create');
 

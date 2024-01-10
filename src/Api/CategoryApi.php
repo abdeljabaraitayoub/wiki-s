@@ -9,6 +9,7 @@ class CategoryApi
 {
     public function read()
     {
+        header('Content-Type: application/json');
         $wiki = new Category();
         $wikis = json_encode($wiki->read());
         echo $wikis;
@@ -43,5 +44,14 @@ class CategoryApi
         extract($data);
         $wiki = new Category();
         $wiki->update($id, $title);
+    }
+    public function singlecategory()
+    {
+        header('Content-Type: application/json');
+        extract($_GET);
+        // dump($data);
+        $wiki = new Category();
+        $wiki->loadsinglecategory($id);
+        echo json_encode($wiki->loadsinglecategory($id));
     }
 }

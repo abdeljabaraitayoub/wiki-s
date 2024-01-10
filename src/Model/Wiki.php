@@ -82,4 +82,10 @@ class Wiki
         $stmt = $this->db->prepare($query);
         $stmt->execute();
     }
+    public function archive($id)
+    {
+        $query = "UPDATE wikis SET DeleteDate = current_timestamp() WHERE id = $id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+    }
 }

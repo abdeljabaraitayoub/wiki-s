@@ -40,4 +40,8 @@ class HomeController extends Controller
     {
         $this->render("admin/tags");
     }
+    public function categories()
+    {
+        $this->render("admin/category");
+    }
 }

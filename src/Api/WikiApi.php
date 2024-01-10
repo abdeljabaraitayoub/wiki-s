@@ -68,16 +68,19 @@ class WikiApi
         header('Content-Type: application/json; charset=utf-8');
         $jsonString = file_get_contents('php://input');
         $data = json_decode($jsonString, true);
-        // dump($data);
 
         extract($data);
-        // echo ($id);
-        // echo ($title);
-        // echo ($description);
-        // echo ($content);
-        // echo ($categorie);
-        // echo  json_encode($data);
         $wiki = new Wiki();
         $wiki->update($id, $title, $description, $content, $categorie);
+    }
+    public function archive()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $jsonString = file_get_contents('php://input');
+        $data = json_decode($jsonString, true);
+
+        extract($data);
+        $wiki = new Wiki();
+        $wiki->archive($id);
     }
 }

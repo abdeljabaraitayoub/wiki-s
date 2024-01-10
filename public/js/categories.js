@@ -1,4 +1,4 @@
-console.log("tags.js");
+console.log("categories.js");
 
 let container = document.querySelector("tbody");
 let title = document.getElementById("titlee");
@@ -10,14 +10,14 @@ const createbtn = document.getElementById("create");
 btn.addEventListener("click", submit);
 createbtn.addEventListener("click", create);
 
-loadtags();
+loadcategories();
 
 function deleteTag(e) {
   e.preventDefault();
   console.log(e.currentTarget.dataset.id);
   let id = e.currentTarget.dataset.id;
   const options = {
-    url: "/api/tag/",
+    url: "/api/categorie",
     method: "DELETE",
     headers: {
       Accept: "application/json",
@@ -38,23 +38,23 @@ function deleteTag(e) {
     .catch((error) => {
       console.error(error);
     });
-  loadtags();
+  loadcategories();
 }
 
-function loadtags() {
-  axios.get("/api/tag/").then((response) => {
+function loadcategories() {
+  axios.get("/api/categorie").then((response) => {
     data = response.data;
     console.log(data);
     container.innerHTML = "";
-    data.forEach((tag) => {
+    data.forEach((category) => {
       container.innerHTML += `
       <tr>
-                    <th scope="row">${tag.id}</th>
-                    <td>${tag.Nom}</td>
+                    <th scope="row">${category.id}</th>
+                    <td>${category.title}</td>
                     <td><div class="d-flex">
                         <div>
-                            <a href="#" onclick="deleteTag(event)" data-id="${tag.id}"  class="m-2"><i class="delete ri-delete-bin-6-line m-2"></i></a>
-                            <a href="#modify"  onclick="modifyTag(event)" data-id="${tag.id}" class="m-2"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-edit-line m-auto"></i></a>
+                            <a href="#" onclick="deleteTag(event)" data-id="${category.id}"  class="m-2"><i class="delete ri-delete-bin-6-line m-2"></i></a>
+                            <a href="#modify"  onclick="modifyTag(event)" data-id="${category.id}" class="m-2"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="ri-edit-line m-auto"></i></a>
                         </div>
                     </td>
         </tr>
@@ -62,20 +62,22 @@ function loadtags() {
     });
   });
 }
+
 function clicked() {
   btn.style.display = "none";
   createbtn.style.display = "block";
   title.value = "";
   header.innerHTML = "Create Tag";
 }
+
 function modifyTag(e) {
   btn.style.display = "block";
   createbtn.style.display = "none";
   let ID = e.currentTarget.dataset.id;
-  axios.get(`/api/tag/loadsignletag?id=${ID}`).then((response) => {
-    tag = response.data;
-    title.value = tag[0].Nom;
-    btn.setAttribute("data-id", tag[0].id);
+  axios.get(`/api/categorie/loadsinglecategory?id=${ID}`).then((response) => {
+    category = response.data;
+    title.value = category[0].title;
+    btn.setAttribute("data-id", category[0].id);
   });
 }
 
@@ -84,7 +86,7 @@ function submit(e) {
   let id = e.currentTarget.dataset.id;
   console.log(title.value);
   const options = {
-    url: "/api/tag/",
+    url: "/api/categorie",
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -99,7 +101,7 @@ function submit(e) {
     console.log(response.status);
     if (response.status == 200) {
       alert("Tag modified successfully!");
-      loadtags();
+      loadcategories();
     }
   });
 }
@@ -108,7 +110,7 @@ function create(e) {
   e.preventDefault();
   console.log(title.value);
   const options = {
-    url: "/api/tag/",
+    url: "/api/categorie",
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -122,7 +124,7 @@ function create(e) {
     console.log(response.status);
     if (response.status == 200) {
       alert("Tag created successfully!");
-      loadtags();
+      loadcategories();
     }
   });
 }
