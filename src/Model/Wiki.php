@@ -20,9 +20,10 @@ class Wiki
 
         $query = "SELECT *, wikis.id as wikiID FROM wikis 
         JOIN users ON wikis.authorID = users.id 
-        WHERE title LIKE '%$search%' 
+        WHERE (title LIKE '%$search%' 
           OR description LIKE '%$search%' 
-          OR content LIKE '%$search%' 
+          OR content LIKE '%$search%')
+          AND DeleteDate IS NULL 
         LIMIT $itemsPerPage OFFSET $offset";
 
         $stmt = $this->db->query($query);

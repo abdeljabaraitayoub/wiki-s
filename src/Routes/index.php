@@ -5,7 +5,9 @@ use App\Api\WikiApi;
 use App\Api\CategoryApi;
 use App\Api\TagApi;
 use App\Api\WikiTagApi;
+use App\Api\AuthApi;
 use App\Router;
+
 
 $router = new Router();
 //rendering views routes
@@ -28,7 +30,7 @@ $router->get('/api/wikis/authorload', WikiApi::class, 'authorload');
 $router->post('/api/wikis', WikiApi::class, 'create');
 $router->delete('/api/wikis', WikiApi::class, 'delete');
 $router->put('/api/wikis', WikiApi::class, 'update');
-$router->patch('/api/wikis/archive', WikiApi::class, 'archive');
+$router->patch('/api/wikis', WikiApi::class, 'archive');
 //catagory APIs
 $router->get('/api/categorie', CategoryApi::class, 'read');
 $router->get('/api/categorie/loadsinglecategory', CategoryApi::class, 'singlecategory');
@@ -44,6 +46,11 @@ $router->post('/api/tag/', TagApi::class, 'add');
 $router->put('/api/tag/', TagApi::class, 'update');
 //wikitag APIs
 $router->post('/api/Wikitag/', WikiTagApi::class, 'create');
+
+
+//user APIs
+$router->post('/api/user/login', AuthApi::class, 'login');
+$router->post('/api/user/register', AuthApi::class, 'register');
 
 
 $router->get('/user', HomeController::class, 'user');

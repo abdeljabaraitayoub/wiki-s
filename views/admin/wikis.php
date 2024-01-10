@@ -42,6 +42,11 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+  #modify {
+    display: none;
+  }
+</style>
 
 <body>
 

@@ -1,7 +1,6 @@
 let button = document.getElementById("button");
 let createbutton = document.getElementById("buttoncreate");
 const Section = document.getElementById("modify");
-Section.style.display = "none";
 
 createbutton.addEventListener("click", submitform);
 let cardtitle = document.getElementById("title");
@@ -215,7 +214,6 @@ function WikiTag(checked, wiki) {
 function deleteWiki(e) {
   id = e.currentTarget.dataset.id;
   console.log(id);
-  clearinputs();
   const options = {
     url: "/api/wikis",
     method: "DELETE",

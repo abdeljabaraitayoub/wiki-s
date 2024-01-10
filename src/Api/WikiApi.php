@@ -55,11 +55,8 @@ class WikiApi
         header('Content-Type: application/json; charset=utf-8');
         $jsonString = file_get_contents('php://input');
         $data = json_decode($jsonString, true);
-        // dump($data);
 
         extract($data);
-        // echo ($id);
-        // echo  json_encode($data);
         $wiki = new Wiki();
         $wiki->delete($id);
     }
