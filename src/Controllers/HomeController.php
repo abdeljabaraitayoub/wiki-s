@@ -24,12 +24,20 @@ class HomeController extends Controller
     {
         $this->render("/user/about");
     }
-    public function insert()
+    public function user()
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $name = isset($_POST["username"]) ? $_POST["username"] : "";
-            $email = isset($_POST["password"]) ? $_POST["password"] : "";
-            $this->render('layout/home', ['name' => $name]);
-        }
+        $this->render("/user");
+    }
+    public function createWiki()
+    {
+        $this->render("admin/createwiki");
+    }
+    public function wikis()
+    {
+        $this->render("admin/wikis");
+    }
+    public function tags()
+    {
+        $this->render("admin/tags");
     }
 }
