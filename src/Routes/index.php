@@ -33,8 +33,10 @@ $router->post('/api/categorie/create', CategoryApi::class, 'create');
 $router->post('/api/categorie/delete', CategoryApi::class, 'delete');
 $router->post('/api/categorie/update', CategoryApi::class, 'update');
 //catagory APIs
-$router->get('/api/tag/load', TagApi::class, 'loadsingletag');
+$router->get('/api/tag/load', TagApi::class, 'tagperwiki');
+$router->get('/api/tag/loadsignletag', TagApi::class, 'singletag');
 $router->get('/api/tag/', TagApi::class, 'loadtags');
+$router->delete('/api/tag/', TagApi::class, 'delete');
 //wikitag APIs
 $router->post('/api/Wikitag/', WikiTagApi::class, 'create');
 
