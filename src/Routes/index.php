@@ -1,12 +1,17 @@
 <?php
 
+
+
 use App\Controllers\HomeController;
 use App\Api\WikiApi;
 use App\Api\CategoryApi;
 use App\Api\TagApi;
 use App\Api\WikiTagApi;
 use App\Api\AuthApi;
+use App\middlewares\Auth;
 use App\Router;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 
 $router = new Router();
@@ -34,16 +39,16 @@ $router->patch('/api/wikis', WikiApi::class, 'archive');
 //catagory APIs
 $router->get('/api/categorie', CategoryApi::class, 'read');
 $router->get('/api/categorie/loadsinglecategory', CategoryApi::class, 'singlecategory');
-$router->post('/api/categorie', CategoryApi::class, 'create');
-$router->delete('/api/categorie', CategoryApi::class, 'delete');
-$router->put('/api/categorie', CategoryApi::class, 'update');
+$router->post('/api/categorie', CategoryApi::class, 'create', Auth::class);
+$router->delete('/api/categorie', CategoryApi::class, 'delete', Auth::class);
+$router->put('/api/categorie', CategoryApi::class, 'update', Auth::class);
 //tags APIs
 $router->get('/api/tag/load', TagApi::class, 'tagperwiki');
 $router->get('/api/tag/loadsignletag', TagApi::class, 'singletag');
 $router->get('/api/tag/', TagApi::class, 'loadtags');
-$router->delete('/api/tag/', TagApi::class, 'delete');
-$router->post('/api/tag/', TagApi::class, 'add');
-$router->put('/api/tag/', TagApi::class, 'update');
+$router->delete('/api/tag/', TagApi::class, 'delete', Auth::class);
+$router->post('/api/tag/', TagApi::class, 'add', Auth::class);
+$router->put('/api/tag/', TagApi::class, 'update', Auth::class);
 //wikitag APIs
 $router->post('/api/Wikitag/', WikiTagApi::class, 'create');
 
