@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controller;
 use App\Models\Journal;
 
-class HomeController extends Controller
+class View extends Controller
 {
     public function index()
     {
@@ -34,6 +34,10 @@ class HomeController extends Controller
     }
     public function wikis()
     {
+        $this->render("author/wikis");
+    }
+    public function crudwikis()
+    {
         $this->render("admin/wikis");
     }
     public function tags()
@@ -43,5 +47,17 @@ class HomeController extends Controller
     public function categories()
     {
         $this->render("admin/category");
+    }
+    public function register()
+    {
+        $this->render("admin/register");
+    }
+    public function login()
+    {
+        $this->render("admin/login");
+    }
+    public function dashboard()
+    {
+        $this->render("admin/dashboard");
     }
 }

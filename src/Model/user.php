@@ -28,4 +28,12 @@ class user
         $stmt = $this->db->query($query);
         return $stmt;
     }
+    public function statistiques()
+    {
+        $query = "SELECT COUNT(*) as total FROM users";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
+    }
 }

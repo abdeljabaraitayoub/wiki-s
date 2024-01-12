@@ -5,13 +5,18 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / General - NiceAdmin Bootstrap Template</title>
+  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+  <link href="assets/css/style.css" rel="stylesheet" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -37,6 +42,11 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+  #modify {
+    display: none;
+  }
+</style>
 
 <body>
 
@@ -255,17 +265,11 @@
             </li>
 
             <li>
-              <a onclick="signout()" class="dropdown-item d-flex align-items-center signout" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="#">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
             </li>
-            <script>
-              function signout() {
-                document.cookie = "AUTHORIZATION=;"
-                window.location.href = "/login";
-              }
-            </script>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -278,127 +282,142 @@
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
+
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/dashboard">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span>
         </a>
-        <ul id="tables-nav" class="nav-content collapse active" data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/crudwikis">
-              <i class="bi bi-circle"></i><span>Wikis</span>
-            </a>
-          </li>
-          <li>
-            <a href="/tags">
-              <i class="bi bi-circle active"></i><span>Tags</span>
-            </a>
-          </li>
-          <li>
-            <a href="/categories">
-              <i class="bi bi-circle"></i><span>Catgories</span>
-            </a>
-          </li>
-        </ul>
-        </li>
 
-        <li class="nav-heading"></li>
+      </li>
 
-        <li class="nav-item">
-          <a onclick="signout()" class="nav-link collapsed signout" href="#">
-            <i class="bi bi-box-arrow-in-right"></i>
-            <span>Log out</span>
-          </a>
-          <script>
-            function signout() {
-              document.cookie = "AUTHORIZATION=;"
-              window.location.href = "/login";
-            }
-          </script>
-        </li>
+      <li class="nav-heading"></li>
+
+      <li class="nav-item">
+        <a onclick="signout()" class="nav-link collapsed" href="#">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Log out</span>
+        </a>
+      </li>
+      <script>
+        function signout() {
+          document.cookie = "AUTHORIZATION=;"
+          window.location.href = "/login";
+        }
+      </script>
     </ul>
   </aside>
+
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Table</h1>
+      <h1>Data Tables</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">dashboard</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item ">Tags</li>
+          <li class="breadcrumb-item active">Data</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row">
-        <div class="">
+        <div class="col-lg-12">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Tags</h5>
+              <h5 class="card-title">Wikis</h5>
+              <p>here you can create/modify or delete your wikis </p>
 
-              <!-- Default Table -->
+              <!-- Table with stripped rows -->
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">action</th>
+                    <th>
+                      <b>title</b>
+                    </th>
+                    <th>Description</th>
+                    <th data-type="date" data-format="YYYY/DD/MM">published at</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
 
                 </tbody>
               </table>
-              <!-- Button trigger modal -->
-              <button type="button" onclick="clicked()" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
-                create
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">modify tag</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="container">
-                        <div class="row">
-                          <div class="">
-                            <label for="name" class="form-label">Name</label>
-                            <input class="form-control form-control-lg" id="titlee" type="text" placeholder="title">
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" id="submit" class="btn btn-primary">Save changes</button>
-                      <button type="button" id="create" class="btn btn-primary">create</button>
-                    </div>
-                  </div>
-                </div>
+              <div class="d-flex justify-content-end">
+                <a href="#modify">
+                  <button onclick="clearinputs()" type="button" class="btn btn-primary">create</button>
+                </a>
               </div>
-              <!-- End Default Table Example -->
+              <!-- End Table with stripped rows -->
+
+
             </div>
           </div>
-
-
-          <!-- End small tables -->
 
         </div>
       </div>
 
     </section>
+    <section id="modify" class="section">
+      <div class="row">
+        <div>
+          <div class="card">
+            <div class="card-body">
+              <h5 id="title" class="card-title">create a wiki</h5>
+              <!-- Vertical Form -->
+              <form id="myForm" class="row g-3">
+                <input id="id" type="hidden" value="<?= 2 ?>">
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Wiki title</label>
+                  <input type="text" class="form-control" id="inputNanme4" />
+                </div>
+                <div class="col-12">
+                  <label for="inputEmail4" class="form-label">description</label>
+                  <input type="text" class="form-control" id="description" />
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">category</label>
+                  <select class="form-select" id="category">
+
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">content</label>
+                  <div id="summernote"></div>
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Tags</label>
+                  <div id="checkboxs">
+
+                  </div>
+                </div>
+
+                <div class="text-center">
+
+                  <button id="button" onclick="modifyWiki(event)" class="btn btn-primary">
+                    Submit
+                  </button>
+                  <button id="buttoncreate" class="btn btn-primary">
+                    create
+                  </button>
+                  <button type="reset" class="btn btn-secondary">
+                    Reset
+                  </button>
+                </div>
+                <!-- Vertical Form -->
+              </form>
+            </div>
+
+            <div class="card"></div>
+
+            <div class="card"></div>
+          </div>
+        </div>
+    </section>
+
+
 
   </main><!-- End #main -->
 
@@ -418,7 +437,16 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+  <script>
+    $('#summernote').summernote({
+      tabsize: 3,
+      height: 100
+    });
+  </script>
   <!-- Vendor JS Files -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script src="js/author/wikis.js"></script>
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.umd.js"></script>
@@ -429,13 +457,10 @@
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
   <script src="assets/js/main.js"></script>
-  <script src="js/tags.js"></script>
+  <!-- <script src="js/author/Modifywiki.js"></script> -->
+
 
 </body>
-
-</html>
 
 </html>

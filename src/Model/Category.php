@@ -50,4 +50,12 @@ class Category
         $stmt = $this->db->prepare($query);
         $stmt->execute();
     }
+    public function statistiques()
+    {
+        $query = "SELECT COUNT(*) as total FROM categories";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
+    }
 }

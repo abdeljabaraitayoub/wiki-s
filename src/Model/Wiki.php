@@ -52,6 +52,15 @@ class Wiki
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         return $stmt->fetchAll();
     }
+    public function admin()
+    {
+        $query = "SELECT * , wikis.id as wikiID FROM wikis 
+        JOIN users ON wikis.authorID = users.id ";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
+    }
     public function get_id($title)
     {
         $query = "SELECT wikis.id as wikiID FROM wikis 
@@ -80,6 +89,7 @@ class Wiki
     public function update($id, $title, $description, $content, $categorie)
     {
         $query = "UPDATE wikis SET title = '$title', description = '$description', content = '$content', CategorieID = '$categorie' WHERE id = '$id'";
+
         $stmt = $this->db->prepare($query);
         $stmt->execute();
     }
@@ -88,5 +98,19 @@ class Wiki
         $query = "UPDATE wikis SET DeleteDate = current_timestamp() WHERE id = $id";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
+    }
+    public function desarchive($id)
+    {
+        $query = "UPDATE wikis SET DeleteDate = null WHERE id = $id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+    }
+    public function statistiques()
+    {
+        $query = "SELECT COUNT(*) as total FROM wikis";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
     }
 }

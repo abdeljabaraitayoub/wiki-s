@@ -21,7 +21,7 @@ class TagApi
         $jsonString = file_get_contents('php://input');
         extract($_GET);
         $tag = new tag();
-        $tags = json_encode($tag->tagsperwiki($id));
+        $tags = json_encode($tag->tagsperwiki(htmlspecialchars($id)));
         echo $tags;
     }
     public function delete()
@@ -31,14 +31,14 @@ class TagApi
         $data = json_decode($jsonString, true);
         extract($data);
         $tag = new tag();
-        $tag->deletetag($id);
+        $tag->deletetag(htmlspecialchars($id));
     }
     public function singletag()
     {
         header('Content-Type: application/json; charset=utf-8');
         extract($_GET);
         $tag = new tag();
-        $tags = json_encode($tag->loadsingltag($id));
+        $tags = json_encode($tag->loadsingltag(htmlspecialchars($id)));
         echo $tags;
     }
     public function update()
@@ -48,7 +48,7 @@ class TagApi
         $data = json_decode($jsonString, true);
         extract($data);
         $tag = new tag();
-        $tag->updatetag($id, $title);
+        $tag->updatetag(htmlspecialchars($id), htmlspecialchars($title));
     }
     public function add()
     {
@@ -57,6 +57,6 @@ class TagApi
         $data = json_decode($jsonString, true);
         extract($data);
         $tag = new tag();
-        $tag->addtag($title);
+        $tag->addtag(htmlspecialchars($title));
     }
 }

@@ -22,6 +22,7 @@ class CategoryApi
         // dump($data);
 
         extract($data);
+        $title = htmlspecialchars($title);
         $wiki = new Category();
         $wiki->create($title);
     }
@@ -32,6 +33,7 @@ class CategoryApi
         // dump($data);
 
         extract($data);
+        $id = htmlspecialchars($id);
         $wiki = new Category();
         $wiki->delete($id);
     }
@@ -42,6 +44,8 @@ class CategoryApi
         // dump($data);
 
         extract($data);
+        $id = htmlspecialchars($id);
+        $title = htmlspecialchars($title);
         $wiki = new Category();
         $wiki->update($id, $title);
     }
@@ -50,6 +54,7 @@ class CategoryApi
         header('Content-Type: application/json');
         extract($_GET);
         // dump($data);
+        $id = htmlspecialchars($id);
         $wiki = new Category();
         $wiki->loadsinglecategory($id);
         echo json_encode($wiki->loadsinglecategory($id));

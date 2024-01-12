@@ -5,7 +5,6 @@ const Section = document.getElementById("modify");
 createbutton.addEventListener("click", submitform);
 let cardtitle = document.getElementById("title");
 const remove = document.getElementsByClassName("delete");
-let id;
 const table = document.querySelector("tbody");
 const checked = [];
 loadWikis();
@@ -49,7 +48,7 @@ function gettags() {
 
 // LOAD THE WIKIS
 function loadWikis() {
-  axios.get("/api/wikis/authorload?id=2").then((response) => {
+  axios.get("/api/wikis/authorload").then((response) => {
     const data = response.data;
     console.log(data);
     table.innerHTML = "";

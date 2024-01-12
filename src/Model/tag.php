@@ -53,4 +53,12 @@ class tag
         $query = "INSERT INTO tags (Nom) VALUES ('$title')";
         $stmt = $this->db->query($query);
     }
+    public function statistiques()
+    {
+        $query = "SELECT COUNT(*) as total FROM tags";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
+    }
 }

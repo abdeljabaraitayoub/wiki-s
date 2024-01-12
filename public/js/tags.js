@@ -1,7 +1,7 @@
 console.log("tags.js");
 
 let container = document.querySelector("tbody");
-let title = document.getElementById("titlee");
+const title = document.getElementById("titlee");
 header = document.getElementById("exampleModalLabel");
 
 const btn = document.getElementById("submit");
@@ -29,14 +29,15 @@ function deleteTag(e) {
   };
   axios(options)
     .then((response) => {
-      console.log(`Deleted post with ID ${id}`);
       if (response.status == 200) {
         alert("Wiki deleted successfully!");
         loadWikis();
       }
     })
     .catch((error) => {
-      console.error(error);
+      if (error.response === 401) {
+        window.location.href = "/"; // Redirect to login page
+      }
     });
   loadtags();
 }

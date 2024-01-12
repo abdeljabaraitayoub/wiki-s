@@ -12,6 +12,10 @@ class WikiTagApi
         $jsonString = file_get_contents('php://input');
         $data = json_decode($jsonString, true);
         extract($data);
+
+        $wikiID = htmlspecialchars($wikiID);
+        $tagID = htmlspecialchars($tagID);
+
         $tag = new Wikitags();
         $tags = json_encode($tag->create($wikiID, $tagID));
     }
