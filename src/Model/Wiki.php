@@ -21,8 +21,7 @@ class Wiki
         $query = "SELECT *, wikis.id as wikiID,wikis.title as title FROM wikis 
         JOIN users ON wikis.authorID = users.id left join categories on wikis.CategorieID = categories.id
         WHERE (wikis.title LIKE '%$search%' 
-          OR description LIKE '%$search%'  OR categories.title LIKE '%$search%' 
-          OR content LIKE '%$search%')
+          OR description LIKE '%$search%'  OR categories.title LIKE '%$search%')
           AND DeleteDate IS NULL 
         LIMIT $itemsPerPage OFFSET $offset";
 

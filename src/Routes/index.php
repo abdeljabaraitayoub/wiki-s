@@ -58,7 +58,6 @@ $router->post('/api/categorie', CategoryApi::class, 'create', AuthMiddleware::cl
 $router->delete('/api/categorie', CategoryApi::class, 'delete', AuthMiddleware::class, 'adminApis');
 $router->put('/api/categorie', CategoryApi::class, 'update', AuthMiddleware::class, 'adminApis');
 
-$router->post('/api/picture', picApi::class, 'upload');
 
 
 
@@ -87,5 +86,10 @@ $router->post('/api/user/register', AuthApi::class, 'register');
 //wikitag APIs
 
 $router->get('/api/statistiques', StatistiquesApi::class, 'statistiques', AuthMiddleware::class, 'adminApis');
+
+//pictures API
+
+$router->post('/api/picture', picApi::class, 'upload', AuthMiddleware::class, 'authorAPI');
+
 
 $router->dispatch();

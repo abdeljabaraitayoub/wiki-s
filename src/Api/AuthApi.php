@@ -30,18 +30,27 @@ class AuthApi
             echo json_encode('wrong email');
         } else if (password_verify($password, $users[0]['password'])) {
             header('Content-Type: application/json; charset=utf-8');
-
             $payload = array(
                 "iat" => 1356999524,
                 "nbf" => 1357000000,
                 "role" => $users[0]['Role'],
                 "id" => $users[0]['id'],
             );
-
             $token = JWT::encode($payload, $private_key, 'HS256');
-            $response = ["jwt" => $token, "role" => $users[0]['Role']];
-
+            $response = ["role" => $users[0]['Role']];
             echo json_encode($response);
+
+            setcookie(
+                "AUTHORIZATION",
+                $token,
+                [
+                    'expires' => time() + 3600,
+                    'path' => '/',
+                    'secure' => true,
+                    'httponly' => false,
+                    'samesite' => 'Strict'
+                ]
+            );
         } else {
             header("HTTP/1.1 401 Unauthorized");
             echo json_encode('wrong password');

@@ -27,12 +27,10 @@ submit.addEventListener("click", function (e) {
     .then((response) => {
       response.data;
       if (response.status == 200) {
-        document.cookie = `AUTHORIZATION=${response.data.jwt}`;
+        // document.cookie = `AUTHORIZATION=${response.data.jwt};Secure; SameSite=Strict; Path=/; Max-Age=3600;`;
         if (response.data.role == "admin") {
-          alert("admin");
           window.location.href = "/tags";
         } else if (response.data.role == "author") {
-          alert("author");
           window.location.href = "/wikis";
         }
       } else {

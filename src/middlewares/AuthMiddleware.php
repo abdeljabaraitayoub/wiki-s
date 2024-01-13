@@ -11,7 +11,7 @@ class AuthMiddleware
     private $private_key = "secret-key";
     public function adminApis($Controller, $method)
     {
-        if (isset($_COOKIE['AUTHORIZATION'])) {
+        if (isset($_COOKIE['AUTHORIZATION']) && $_COOKIE['AUTHORIZATION'] != null) {
             $data = JWT::decode($_COOKIE["AUTHORIZATION"], new Key($this->private_key, 'HS256'));
             if ($data->role == "admin") {
                 $controller = new $Controller();
@@ -25,7 +25,7 @@ class AuthMiddleware
     }
     public function adminViews($Controller, $method)
     {
-        if (isset($_COOKIE['AUTHORIZATION'])) {
+        if (isset($_COOKIE['AUTHORIZATION']) && $_COOKIE['AUTHORIZATION'] != null) {
             $data = JWT::decode($_COOKIE["AUTHORIZATION"], new Key($this->private_key, 'HS256'));
             if ($data->role == "admin") {
                 $controller = new $Controller();
@@ -39,7 +39,7 @@ class AuthMiddleware
     }
     public function authorAPI($Controller, $method)
     {
-        if (isset($_COOKIE['AUTHORIZATION'])) {
+        if (isset($_COOKIE['AUTHORIZATION']) && $_COOKIE['AUTHORIZATION'] != null) {
             $data = JWT::decode($_COOKIE["AUTHORIZATION"], new Key($this->private_key, 'HS256'));
             if ($data->role == "author" || $data->role == "admin") {
                 $controller = new $Controller();
@@ -53,16 +53,16 @@ class AuthMiddleware
     }
     public function authorViews($Controller, $method)
     {
-        if (isset($_COOKIE['AUTHORIZATION'])) {
+        if (isset($_COOKIE['AUTHORIZATION']) && $_COOKIE['AUTHORIZATION'] != null) {
             $data = JWT::decode($_COOKIE["AUTHORIZATION"], new Key($this->private_key, 'HS256'));
             if ($data->role == "author" || $data->role == "admin") {
                 $controller = new $Controller();
                 $controller->$method();
             } else {
-                header("HTTP/1.1 401 Unauthorized");
+                header("Location: /login");
             }
         } else {
-            header("HTTP/1.1 401 Unauthorized");
+            header("Location: /login");
         }
     }
 }
