@@ -417,7 +417,7 @@
   <!-- Vendor JS Files -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <script src="js/crudwikis.js"></script>
+  <script src="js/admin/crudwikis.js"></script>
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.umd.js"></script>
@@ -429,7 +429,6 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="js/logout.js"></script>
   <!-- <script src="js/author/Modifywiki.js"></script> -->
 
 

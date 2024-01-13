@@ -18,10 +18,10 @@ class Wiki
     {
         $offset = ($page - 1) * $itemsPerPage;
 
-        $query = "SELECT *, wikis.id as wikiID FROM wikis 
-        JOIN users ON wikis.authorID = users.id 
-        WHERE (title LIKE '%$search%' 
-          OR description LIKE '%$search%' 
+        $query = "SELECT *, wikis.id as wikiID,wikis.title as title FROM wikis 
+        JOIN users ON wikis.authorID = users.id join categories on wikis.CategorieID = categories.id
+        WHERE (wikis.title LIKE '%$search%' 
+          OR description LIKE '%$search%'  OR categories.title LIKE '%$search%' 
           OR content LIKE '%$search%')
           AND DeleteDate IS NULL 
         LIMIT $itemsPerPage OFFSET $offset";

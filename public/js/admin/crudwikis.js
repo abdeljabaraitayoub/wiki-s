@@ -18,9 +18,9 @@ function loadWikis() {
       let archiveIconHTML = "";
 
       if (wiki.DeleteDate == null) {
-        archiveIconHTML = `<a href="#" onclick="archive(event)" data-id="${wiki.wikiID}" class="m-2"><i class="delete ri-eye-off-fill"></i></a>`;
+        archiveIconHTML = `<a  onclick="archive(event)" data-id="${wiki.wikiID}" class="m-2"><i class="delete ri-eye-off-fill"></i></a>`;
       } else {
-        archiveIconHTML = `<a href="#" onclick="desarchive(event)" data-id="${wiki.wikiID}" class="m-2"><i class="ri-eye-line"></i></a>`;
+        archiveIconHTML = `<a  onclick="desarchive(event)" data-id="${wiki.wikiID}" class="m-2"><i class="ri-eye-line"></i></a>`;
       }
 
       table.innerHTML += `<tr>

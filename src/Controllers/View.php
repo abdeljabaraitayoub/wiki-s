@@ -50,11 +50,11 @@ class View extends Controller
     }
     public function register()
     {
-        $this->render("admin/register");
+        $this->render("register");
     }
     public function login()
     {
-        $this->render("admin/login");
+        $this->render("login");
     }
     public function dashboard()
     {

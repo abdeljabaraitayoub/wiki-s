@@ -526,7 +526,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="js/dashboard.js"></script>
+  <script src="js/admin/dashboard.js"></script>
 </body>
 
 </html>

@@ -66,7 +66,6 @@ class WikiApi
         extract($data);
         $title = htmlspecialchars($title);
         $description = htmlspecialchars($description);
-        $content = htmlspecialchars($content);
         $categorie = htmlspecialchars($categorie);
         $wiki = new Wiki();
         $data = JWT::decode($_COOKIE["AUTHORIZATION"], new Key("secret-key", 'HS256'));
@@ -94,7 +93,6 @@ class WikiApi
         $id = htmlspecialchars($id);
         $title = htmlspecialchars($title);
         $description = htmlspecialchars($description);
-        $content = htmlspecialchars($content);
         $categorie = htmlspecialchars($categorie);
         $wiki = new Wiki();
         $wiki->update($id, $title, $description, $content, $categorie);

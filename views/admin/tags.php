@@ -432,7 +432,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script src="assets/js/main.js"></script>
-  <script src="js/tags.js"></script>
+  <script src="js/admin/tags.js"></script>
 
 </body>
 

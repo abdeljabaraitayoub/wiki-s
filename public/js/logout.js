@@ -1,1 +1,0 @@
-btn = document.getElementsByClassName("signout");
