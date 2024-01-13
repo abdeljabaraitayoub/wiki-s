@@ -11,6 +11,7 @@ use App\Router;
 use App\Api\StatistiquesApi;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use App\Api\picApi;
 
 
 $router = new Router();
@@ -56,6 +57,9 @@ $router->get('/api/categorie', CategoryApi::class, 'read', AuthMiddleware::class
 $router->post('/api/categorie', CategoryApi::class, 'create', AuthMiddleware::class, 'adminApis');
 $router->delete('/api/categorie', CategoryApi::class, 'delete', AuthMiddleware::class, 'adminApis');
 $router->put('/api/categorie', CategoryApi::class, 'update', AuthMiddleware::class, 'adminApis');
+
+$router->post('/api/picture', picApi::class, 'upload');
+
 
 
 //tags APIs

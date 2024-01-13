@@ -6,6 +6,7 @@ let content = document.getElementById("content");
 let author = document.getElementById("author");
 let date = document.getElementById("date");
 let tags = document.getElementById("tags");
+let header = document.querySelector("header");
 function checked() {
   const checkedd = document.getElementById("inlineCheckbox1");
   console.log(checkedd);
@@ -24,7 +25,8 @@ axios
     date.innerText = data.creationDate;
 
     content.innerHTML = data.content;
-    // tags.innerText = data.tags;
+    path = data.image;
+    header.style.backgroundImage = `url('${path}')`; // tags.innerText = data.tags;
     // console.log(response.data);
     id = data.wikiID;
 

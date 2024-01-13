@@ -19,7 +19,7 @@ class Wiki
         $offset = ($page - 1) * $itemsPerPage;
 
         $query = "SELECT *, wikis.id as wikiID,wikis.title as title FROM wikis 
-        JOIN users ON wikis.authorID = users.id join categories on wikis.CategorieID = categories.id
+        JOIN users ON wikis.authorID = users.id left join categories on wikis.CategorieID = categories.id
         WHERE (wikis.title LIKE '%$search%' 
           OR description LIKE '%$search%'  OR categories.title LIKE '%$search%' 
           OR content LIKE '%$search%')
@@ -112,5 +112,12 @@ class Wiki
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         return $stmt->fetchAll();
+    }
+    public function imageupload($id, $path)
+    {
+        $query = "UPDATE wikis SET image = '$path' WHERE id = '$id'";
+        $stmt = $this->db->prepare($query);
+        dump($query);
+        $stmt->execute();
     }
 }

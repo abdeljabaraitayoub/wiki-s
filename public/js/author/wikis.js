@@ -10,6 +10,15 @@ const checked = [];
 loadWikis();
 getcategory();
 gettags();
+function uploadfile(id) {
+  const file = document.getElementById("formFile");
+  formData = new FormData();
+  formData.append("id", id);
+  formData.append("pic", file.files[0]);
+  axios.post("/api/picture", formData).then((response) => {
+    console.log(response.data);
+  });
+}
 
 // load categories
 function getcategory() {
@@ -170,6 +179,10 @@ function modifyWiki(e) {
       Section.style.display = "none";
     }
   });
+  if (document.getElementById("formFile").files[0] != undefined) {
+    uploadfile(id);
+  }
+
   WikiTag(checked, id);
   loadWikis();
   checked = [];
@@ -294,5 +307,6 @@ function getid(title) {
   axios.get(`/api/wikis/get_id?title=${title}`).then((response) => {
     wikiID = response.data[0].wikiID;
     WikiTag(checked, wikiID);
+    uploadfile(wikiID);
   });
 }
